@@ -31,7 +31,7 @@ main {
 }
 
 .section{
-  padding: 70px 0;
+  padding: 70px 0 0;
 }
 
 .container {
@@ -143,6 +143,13 @@ main {
   transition: 0.3s ease-in-out;
 }
 
+.container .profile-data .repositories ul li a span{
+  color: #ffffff;
+  background-color: rgb(110, 72, 197);
+  padding: 0 4px 0.87px;
+  border-radius: 2px;
+}
+
 .container .profile-data .repositories ul li a:hover{
   background-color:hotpink;
   color: #fff
@@ -150,4 +157,25 @@ main {
 
 .container .profile-data.hide{
   display: none;
+}
+
+/* EVENTS */
+
+.container .profile-data .events h2{
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.container .profile-data .events ul{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.container .profile-data .events ul li{
+  padding: 10px;
+}
+
+.container .profile-data .events ul li span{
+  font-weight: 700;
 }

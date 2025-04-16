@@ -145,8 +145,9 @@ main {
 
 .container .profile-data .repositories ul li a span{
   color: #ffffff;
+  font-size: 13px;
   background-color: rgb(110, 72, 197);
-  padding: 0 4px 0.87px;
+  padding: 0 4px 0.8px;
   border-radius: 2px;
 }
 

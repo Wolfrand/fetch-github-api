@@ -7,23 +7,23 @@ const screen = {
                                             <h1>${user.name ?? "Não possui nome cadastrado"}</h1>
                                             <p>${user.bio ?? "Não possui bio cadastrada"}</p>
                                             <br>
-                                            <p>👥 Seguidores: ${user.followers}</p>
-                                            <p>👤 Seguindo: ${user.following}</p>
+                                            <p>👥 Seguidores ${user.followers ?? "O usuário não tem seguidores"}</p>
+                                            <p>👤 Seguindo: ${user.following ?? "O usuário não segue ninguém"}</p>
                                         </div>
-                                    </div>`
+                                      </div>`
 
         if (user.repositories.length > 0) {
             let repositoriesItens = '';
             user.repositories.forEach(repo => {
                 repositoriesItens += `<li>
-                                    <a href="${repo.html_url}" target="_blank">
-                                        ${repo.name}<br>
-                                        <span>🍴${repo.forks_count}</span>
-                                        <span>⭐${repo.stargazers_count}</span>
-                                        <span>👀${repo.watchers_count}</span>
-                                        <span>🧑‍💻${repo.language}</span>
-                                    </a>
-                                </li>`
+                                        <a href="${repo.html_url}" target="_blank">
+                                            <p>${repo.name ?? "Repositório sem nome"}</p>
+                                            <span>🍴${repo.forks_count ?? "Sem forks"}</span>
+                                            <span>⭐${repo.stargazers_count ?? "Sem estrelas"}</span>
+                                            <span>👀${repo.watchers_count ?? "Sem visualização"}</span>
+                                            <span>🧑‍💻${repo.language ?? "Sem linguagem"}</span>
+                                        </a>
+                                      </li>`
             });
 
             this.userProfile.innerHTML += `<div class="repositories section">
@@ -38,11 +38,19 @@ const screen = {
 
         if (user.events.length > 0) {
             let eventsItens = '';
-            user.events.forEach(event => {
-                if (event.type === 'PushEvent') {
-                    eventsItens += `<li><p><span>${event.repo.name}</span> - ${event.payload.commits[0].message ?? "Sem mensagem de commit"}</p></li>`
-                } else if (event.type === 'CreateEvent') {
-                    eventsItens += `<li><p><span>${event.repo.name}</span> - Sem mensagem de commit</p></li>`
+            user.events.forEach(element => {
+                if (element.type === 'PushEvent') {
+                    eventsItens += `<li>
+                                        <p>
+                                            <span>${element.repo.name}</span> - ${element.payload.commits[0].message ?? "Sem mensagem de commit"}
+                                        </p>
+                                    </li>`
+                } else if (element.type === 'CreateEvent') {
+                    eventsItens += `<li>
+                                        <p>
+                                            <span>${element.repo.name}</span> - Criado um ${element.payload.ref_type}
+                                        </p>
+                                    </li>`
                 };
             });
 
